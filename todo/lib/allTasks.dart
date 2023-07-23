@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:todo/beyleyen.dart';
+import 'package:todo/tamamlanan.dart';
 
 class AllTasksPage extends StatefulWidget {
   const AllTasksPage({super.key});
@@ -31,7 +33,7 @@ class _AllTasksPageState extends State<AllTasksPage>
         toolbarHeight: 4,
         bottom: TabBar(
           controller: _tabController,
-          tabs: const <Widget>[
+          tabs: <Widget>[
             Tab(
               icon: Icon(Icons.done_all_outlined),
               text: "TAMAMLANAN",
@@ -43,7 +45,12 @@ class _AllTasksPageState extends State<AllTasksPage>
           ],
         ),
       ),
-      body: const Text("all texts"),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          Tamamlanan(), Bekleyen() // Tamamlanan görevlerin listelendiği sayfa
+        ],
+      ),
     );
   }
 }

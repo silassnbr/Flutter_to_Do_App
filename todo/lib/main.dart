@@ -36,8 +36,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  final _buildPage = const <Widget>[HomePage(), AddTask(), AllTasksPage()];
+  final _buildPage = <Widget>[
+    HomePage(key: UniqueKey()),
+    AddTask(),
+    AllTasksPage()
+  ];
+
   void tap(int index) {
+    if (index == 0) {
+      // Ana sayfaya geçiş yapıldığında key'i güncelle
+      setState(() {
+        _buildPage[0] = HomePage(key: UniqueKey());
+      });
+    }
     setState(() {
       _selectedIndex = index;
     });
