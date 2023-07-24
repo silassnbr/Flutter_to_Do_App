@@ -48,7 +48,12 @@ class _BekleyenState extends State<Bekleyen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => TaskDetailPage(taskId: taskId),
+        builder: (context) => TaskDetailPage(
+          taskId: taskId,
+          taskCopm: false,
+          taskDesc: bekleyenlerDes[index],
+          taskTitle: bekleyenlerTitle[index],
+        ),
       ),
     );
   }

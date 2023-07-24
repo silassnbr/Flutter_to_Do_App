@@ -33,7 +33,7 @@ class _AllTasksPageState extends State<AllTasksPage>
         toolbarHeight: 4,
         bottom: TabBar(
           controller: _tabController,
-          tabs: <Widget>[
+          tabs: const <Widget>[
             Tab(
               icon: Icon(Icons.done_all_outlined),
               text: "TAMAMLANAN",
@@ -47,7 +47,7 @@ class _AllTasksPageState extends State<AllTasksPage>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: <Widget>[
+        children: const <Widget>[
           Tamamlanan(), Bekleyen() // Tamamlanan görevlerin listelendiği sayfa
         ],
       ),

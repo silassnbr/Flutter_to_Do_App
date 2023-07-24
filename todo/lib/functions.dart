@@ -9,7 +9,7 @@ var sayi;
 var toplam;
 List<int> bekleyenler = [];
 Future<Tasks> getAllTasks() async {
-  final url = 'http://api.nstack.in/v1/todos?page=1&limit=10';
+  final url = 'http://api.nstack.in/v1/todos?page=1&limit=19';
   final uri = Uri.parse(url);
   final response = await http.get(uri);
   if (response.statusCode == 200) {
@@ -39,7 +39,7 @@ Future<Tasks> getBekleyenler() async {
   bekleyenlerTitle.clear();
   bekleyenlerDes.clear();
   bekleyenlerId.clear();
-  final url = 'http://api.nstack.in/v1/todos?page=1&limit=10';
+  final url = 'http://api.nstack.in/v1/todos?page=1&limit=19';
   final uri = Uri.parse(url);
   final response = await http.get(uri);
   if (response.statusCode == 200) {
@@ -66,7 +66,7 @@ Future<Tasks> getTamamlanan() async {
   tamamlananTitle.clear();
   tamamlananDes.clear();
   tamamlananId.clear();
-  final url = 'http://api.nstack.in/v1/todos?page=1&limit=10';
+  final url = 'http://api.nstack.in/v1/todos?page=1&limit=19';
   final uri = Uri.parse(url);
   final response = await http.get(uri);
   if (response.statusCode == 200) {

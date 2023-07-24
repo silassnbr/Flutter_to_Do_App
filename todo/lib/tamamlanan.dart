@@ -42,10 +42,16 @@ class _BekleyenState extends State<Tamamlanan> {
 
   void taskTapp(int index) {
     final String taskId = tamamlananId[index];
+    bool a = true;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => TaskDetailPage(taskId: taskId),
+        builder: (context) => TaskDetailPage(
+          taskId: taskId,
+          taskCopm: true,
+          taskDesc: tamamlananDes[index],
+          taskTitle: tamamlananTitle[index],
+        ),
       ),
     );
   }

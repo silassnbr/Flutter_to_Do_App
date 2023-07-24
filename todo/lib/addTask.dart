@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:todo/home.dart';
+import 'package:http/http.dart' as http;
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -41,7 +44,7 @@ class _AddTaskState extends State<AddTask> {
     );
   }
 
-  void _onSaveButtonPressed() {
+  Future<void> _onSaveButtonPressed() async {
     if (controllerTitle.text.trim().isEmpty ||
         controllerDes.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -52,7 +55,27 @@ class _AddTaskState extends State<AddTask> {
         ),
       ));
     } else {
-      _showAlertDialog(context);
+      final title = controllerTitle.text.toString();
+
+      final desc = controllerDes.text.toString();
+      final body = {
+        "title": title.toString(),
+        "description": desc.toString(),
+        "is_completed": false,
+      };
+
+      const url = "http://api.nstack.in/v1/todos";
+      final uri = Uri.parse(url.toString());
+      final res = await http.post(
+        uri,
+        body: jsonEncode(body),
+        headers: {'Content-Type': 'application/json'},
+      );
+      if (res.statusCode == 201) {
+        _showAlertDialog(context);
+      } else {
+        print("hata");
+      }
     }
   }
 
