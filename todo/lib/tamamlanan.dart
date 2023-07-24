@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:todo/functions.dart';
 import 'package:todo/models/tasks.dart';
+import 'package:todo/taskDetail.dart';
 
 class Tamamlanan extends StatefulWidget {
   const Tamamlanan({super.key});
@@ -12,7 +13,6 @@ class Tamamlanan extends StatefulWidget {
 }
 
 class _BekleyenState extends State<Tamamlanan> {
-  List<Tasks>? _tasks;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,15 +26,27 @@ class _BekleyenState extends State<Tamamlanan> {
                       itemCount: tamamlananTitle.length,
                       itemBuilder: (context, index) {
                         return ListTile(
+                          onTap: () {
+                            taskTapp(index);
+                          },
                           title: Text(tamamlananTitle[index]),
                           subtitle: Text(tamamlananDes[index]),
-                          // ... diğer ListTile özellikleri ...
                         );
                       });
                 } else {
                   return const CircularProgressIndicator();
                 }
               })),
+    );
+  }
+
+  void taskTapp(int index) {
+    final String taskId = tamamlananId[index];
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TaskDetailPage(taskId: taskId),
+      ),
     );
   }
 }

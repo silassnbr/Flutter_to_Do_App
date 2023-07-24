@@ -27,7 +27,7 @@ class _BekleyenState extends State<Bekleyen> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           onTap: () {
-                            _handleTaskTap(index); // Tıklama işlemini tetikle
+                            taskTap(index);
                           },
                           title: Text(bekleyenlerTitle[index]),
                           subtitle: Text(
@@ -42,11 +42,9 @@ class _BekleyenState extends State<Bekleyen> {
     );
   }
 
-  void _handleTaskTap(int index) {
-    // Tıklanan göreve göre yönlendirme işlemi burada gerçekleştirilebilir
-    final String taskId = bekleyenlerId[index]; // Tıklanan görevin ID'sini alın
+  void taskTap(int index) {
+    final String taskId = bekleyenlerId[index];
 
-    // Örneğin, tıklanan görevin ayrıntı sayfasına yönlendirin
     Navigator.push(
       context,
       MaterialPageRoute(
