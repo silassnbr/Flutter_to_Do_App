@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:todo/functions.dart';
 import 'package:todo/models/tasks.dart';
+import 'package:todo/repo.dart';
 import 'package:todo/taskDetail.dart';
 
 class Tamamlanan extends StatefulWidget {
@@ -13,10 +14,18 @@ class Tamamlanan extends StatefulWidget {
 }
 
 class _BekleyenState extends State<Tamamlanan> {
+  Future<void> _refreshData() async {
+    var tasks = await getTamamlanan();
+    setState(() {
+      Repo.tasks = tasks; // Verileri güncelleyin.
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+        body: RefreshIndicator(
+      child: Center(
           child: FutureBuilder(
               future: getTamamlanan(),
               builder: (context, snapshot) {
@@ -37,7 +46,8 @@ class _BekleyenState extends State<Tamamlanan> {
                   return const CircularProgressIndicator();
                 }
               })),
-    );
+      onRefresh: _refreshData,
+    ));
   }
 
   void taskTapp(int index) {
