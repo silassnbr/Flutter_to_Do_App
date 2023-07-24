@@ -8,7 +8,10 @@ import 'package:todo/repo.dart';
 var sayi;
 var toplam;
 List<int> bekleyenler = [];
+List<int> bekleyenlerSonUc = [];
+List<int> bekleyenlerSonUcTitle = [];
 Future<Tasks> getAllTasks() async {
+  bekleyenler.clear();
   final url = 'http://api.nstack.in/v1/todos?page=1&limit=19';
   final uri = Uri.parse(url);
   final response = await http.get(uri);
