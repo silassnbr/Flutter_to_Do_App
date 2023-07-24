@@ -82,7 +82,7 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 36, 93, 120),
+      backgroundColor: Colors.pink[200],
       body: Center(
         child: Column(
           children: [
@@ -99,7 +99,7 @@ class _AddTaskState extends State<AddTask> {
                 controller: controllerTitle,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Title',
+                    labelText: 'Title',
                     fillColor: Colors.white),
               ),
             ),
