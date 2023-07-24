@@ -27,8 +27,28 @@ class _MyTaskPageState extends State<TaskDetailPage> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void dialogDeleteError(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error Try Again!!!"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
             ),
           ],
         );
@@ -43,9 +63,8 @@ class _MyTaskPageState extends State<TaskDetailPage> {
     if (response.statusCode == 200) {
       dialogDelete(context);
     } else {
-      print("error");
+      dialogDeleteError(context);
     }
-    print("delete");
   }
 
   void update() {
